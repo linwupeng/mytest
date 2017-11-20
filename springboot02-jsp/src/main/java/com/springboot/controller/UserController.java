@@ -10,7 +10,6 @@ public class UserController {
 	@GetMapping("/user")
 	public String user(Model model){
 		model.addAttribute("users", new String[]{"张三","李四","王五"});
-		system.out.println("hello world !!!");
 		return "user";
 	}
 }
