@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:jaxws="http://cxf.apache.org/jaxws"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+    	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+	
+	
+	<!-- 发布 -->
+	<!-- tomcat启动端口号使用默认的 -->
+	<jaxws:server address="/customerService" serviceClass="com.ws.service.CustomerService">
+		<jaxws:serviceBean>
+			<bean class="com.ws.service.impl.CustomerServiceImpl"></bean>
+		</jaxws:serviceBean>
+		
+		<!-- 输入拦截器 -->
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
+		</jaxws:inInterceptors>
+	
+		<!-- 输出拦截器 -->
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
+		</jaxws:outInterceptors>
+	</jaxws:server>
+	
+</beans>
